@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8" />
+    <title>
+        Background Clock
+    </title>
+
+    <body onload = "timeStart()">
+        <style>
+            h1 {
+                color: rgb(251, 251, 251);
+                font-size: 100px;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-left: 600px;
+            }
+            body {
+                position: relative;
+                background-color: black;
+            }
+            body img {
+                position: absolute;
+                width: 1500px;
+                height: 900px;
+            }
+            .top {
+                animation-name: fade;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+                animation-duration: 43200s;
+                animation-direction: alternate;
+            }
+            @keyframes fade {
+                0% {
+                    opacity: 1;
+                }
+                25% {
+                    opacity: 1;
+                }
+                75% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        </style>
+
+        <script>
+            function timeStart() {
+                const today = new Date();
+                let hours = today.getHours();
+                let minutes = today.getMinutes();
+                minutes = timeCheck(minutes);
+                document.getElementById("clock").innerHTML = hours + ":" + minutes;
+                setTimeout(timeStart, 1000);
+            }
+
+            function timeCheck(i) {
+                if (i < 10) {
+                    i = "0" + i
+                };
+                return i;
+            }
+        </script>
+        <h1 id="clock"></h1>
+        <img src="night.png">
+        <img class="top" src="day.png">
+    </body>
+</html>
